@@ -28,6 +28,10 @@ defmodule ExAws.Request do
 
     with {:ok, full_headers} <- full_headers do
       safe_url = ExAws.Request.Url.sanitize(url, service)
+      
+      IO.inspect(
+          "ExAws: Request URL: #{inspect(safe_url)} HEADERS: #{inspect(full_headers)} BODY: #{inspect(req_body)} ATTEMPT: #{attempt}"
+        )
 
       if config[:debug_requests] do
         Logger.debug(
